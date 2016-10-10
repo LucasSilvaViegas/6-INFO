@@ -1,0 +1,16 @@
+SMAP
+texte_002dadd_jsp.java
+JSP
+*S JSP
+*F
++ 0 cabecalho.jsp
+Admin/categoria/../cabecalho.jsp
++ 1 texte-add.jsp
+Admin/categoria/texte-add.jsp
+*L
+2,5:50
+6,13:55
+19:68,3
+20,11:71
+1#1,21:82
+*E

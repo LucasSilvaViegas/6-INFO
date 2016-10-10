@@ -1,0 +1,19 @@
+SMAP
+teste_002dadd_002dok_jsp.java
+JSP
+*S JSP
+*F
++ 0 teste-add-ok.jsp
+Admin/categoria/teste-add-ok.jsp
++ 1 cabecalho.jsp
+Admin/categoria/../cabecalho.jsp
+*L
+1,2:51
+5,19:55
+23:74
+2#1,5:76
+6,13:81
+19:94,3
+20,11:97
+24#0,10:108
+*E

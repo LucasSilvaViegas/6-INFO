@@ -1,0 +1,24 @@
+SMAP
+produto_jsp.java
+JSP
+*S JSP
+*F
++ 0 produto.jsp
+Site/produto.jsp
++ 1 cabecalho.jsp
+Site/cabecalho.jsp
+*L
+1,4:52
+1#1,155:55
+4#0,2:210
+7,5:213
+11,8:218
+19,2:226,3
+21:232
+22,2:233,3
+24:239
+25,2:240,3
+27,8:246
+35,2:254,3
+37,211:260
+*E

@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Locadora</string>
+
+    <!-- ActionBar -->
+    <string name="menu_item_salvar">Salvar</string>
+    <string name="menu_item_excluir">Excluir</string>
+    <string name="menu_item_cancelar">Cancelar</string>
+    <string name="titulo_actionbar_list">Filmes</string>
+
+    <!-- List e Inputs xml-->
+    <string name="tela1_meusfilmes">Menu de Filmes</string>
+    <string name="tela1_foto">Foto do filme</string>
+    <string name="tela1_nome">Nome: </string>
+    <string name="tela1_hint_nome">  insira aqui o nome</string>
+    <string name="tela1_genero">Gênero: </string>
+    <string name="tela1_hint_genero">  insira aqui o gênero</string>
+    <string name="tela1_rating">Classificação: </string>
+    <string name="tela1_hint_rating">  insira aqui a classificação</string>
+
+</resources>

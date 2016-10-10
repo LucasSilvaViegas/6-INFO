@@ -13,7 +13,7 @@
     </head>
     <body>
         <%
-            response.sendRedirect("Admin/home");
+            response.sendRedirect("Site");
             %>
     </body>
 </html>

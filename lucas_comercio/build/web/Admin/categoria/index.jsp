@@ -81,7 +81,7 @@
                         <td><%=item.getCodigo()%></td>
                         <td><%=item.getNome()%></td>
                         <td><a href="upd.jsp?codigo=<%=item.getCodigo()%>" class="btn  btn-primary btn-sm">Alterar</a>
-                            <a href="index.jsp?codigo=<%=item.getCodigo()%>" class="btn  btn-danger btn-sm">Excluir</a>  
+                            <button  class="btn  btn-danger btn-sm" data-toggle="modal" data-target="#myModal" onclick="codigo=<%=item.getCodigo()%>">Excluir</button>
                          </td>
                     </tr>
                     <%
@@ -98,4 +98,36 @@
     </div>
     <!-- /.panel -->
         </div>
+                <!-- Button trigger modal -->
+   
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Confirme a escolha</h4>
+            </div>
+            <div class="modal-body">
+                Você tem certeza de que quer excluir?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
+                <button type="button" class="btn btn-primary" onclick="excluir()">Sim</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<script>
+    
+    var codigo;
+    
+    function excluir(){
+        document.location.href = "index.jsp?codigo="+codigo;
+    } 
+    
+    
+ </script>
     <%@include file="../rodape.jsp" %>

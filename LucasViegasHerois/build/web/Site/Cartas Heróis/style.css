@@ -1,0 +1,116 @@
+body{
+	background-image: url('background.jpg');
+	background-size: cover;
+}
+section {
+    width: 80%;
+    height: 200px;
+    margin-left: 28%;
+    padding: 10px;
+}
+#divCartasVermelhas{
+    width: 15%;
+    height: 488px;
+    width: 300px;
+    background: red;
+    float: left;
+    cursor: pointer;
+}
+
+#nomeVermelho{
+	background-color: black;
+	color: white;
+	padding: 5%;
+	border: 2px solid white;
+}
+
+#caracteristicasVermelhoInteligencia{
+	margin-top: 65%;
+	background-color: black;
+	color: white;
+	padding: 5%;
+	border: 2px solid white;
+}
+#caracteristicasVermelhoInteligencia:hover{
+	background-color: white;
+	color: black;
+	cursor: pointer;
+}
+#caracteristicasVermelhoForca{
+	background-color: black;
+	color: white;
+	padding: 5%;
+	border: 2px solid white;
+}
+#caracteristicasVermelhoForca:hover{
+	background-color: white;
+	color: black;
+	cursor: pointer;
+}
+#caracteristicasVermelhoVelocidade{
+	background-color: black;
+	color: white;
+	padding: 5%;
+	border: 2px solid white;
+}
+#caracteristicasVermelhoVelocidade:hover{
+	background-color: white;
+	color: black;
+	cursor: pointer;
+}
+#caracteristicasVermelhoResistencia{
+	background-color: black;
+	color: white;
+	padding: 5%;
+	border: 2px solid white;
+}
+
+#caracteristicasVermelhoResistencia:hover{
+	background-color: white;
+	color: black;
+	cursor: pointer;
+}
+
+#divCartasAzuis {
+	width: 15%;
+    margin-left: 25%;
+    width: 300px;
+    height: 488px;
+    background: blue;
+}
+
+#nomeAzul{
+	background-color: black;
+	color: white;
+	padding: 5%;
+	border: 2px solid white;
+}
+#caracteristicasAzulInteligencia{
+	margin-top: 65%;
+	background-color: black;
+	color: white;
+	padding: 5%;
+	border: 2px solid white;
+}
+
+#caracteristicasAzulForca{
+	background-color: black;
+	color: white;
+	padding: 5%;
+	border: 2px solid white;
+}
+
+#caracteristicasAzulVelocidade{
+	background-color: black;
+	color: white;
+	padding: 5%;
+	border: 2px solid white;
+}
+
+#caracteristicasAzulResistencia{
+	background-color: black;
+	color: white;
+	padding: 5%;
+	border: 2px solid white;
+}
+
