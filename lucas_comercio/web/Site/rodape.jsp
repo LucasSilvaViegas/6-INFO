@@ -18,8 +18,11 @@
         </form>
     </div>
 </div>
+        
 <div class="footer-grid">
+    
     <div class="container">
+        <h3>Seção Encheção de Linguiça</h3>  <br/><br/><br/>
         <div class="col-md-2 re-ft-grd">
             <h3>Categories</h3>
             <ul class="categories">

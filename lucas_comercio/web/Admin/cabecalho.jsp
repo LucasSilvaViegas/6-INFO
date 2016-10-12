@@ -73,10 +73,10 @@
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav side-nav">
                         <li>
-                            <a href="../categoria/"><i class="fa fa-fw fa-edit"></i> Categoria</a>
+                            <a href="../categoria/">Categoria</a>
                         </li>
                         <li>
-                            <a href="../produto/"><i class="fa fa-fw fa-bar-chart-o"></i> Produto (COMING SOON)</a>
+                            <a href="../produto/">Produto</a>
                         </li>
 
                         <li><a href="../cliente">Cliente</a></li>

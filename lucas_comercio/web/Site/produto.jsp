@@ -6,7 +6,7 @@
 <%
     ProdutoDAO dao = new ProdutoDAO();
     Produto obj = new Produto();
-    List<Produto> cLista = dao.listar();
+    List<Produto> pLista = dao.listar();
     Integer codigo = Integer.parseInt(request.getParameter("codigo"));
     obj = dao.buscarPorChavePrimaria(codigo);
     Integer quant = obj.getQuant();
@@ -125,10 +125,11 @@
     </div>
 </div>
 
+
 <div class="you-might-like">
     <div class="container">
-
-        <%    for (Produto item : cLista) {
+        <h3>Outros Produtos</h3> <br/><br/>
+        <%    for (Produto item : pLista) {
 
         %>
         <div class="col-md-4 grid-stn simpleCart_shelfItem">

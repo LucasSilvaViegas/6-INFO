@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package dao;
 
 import java.io.Serializable;
@@ -13,35 +12,31 @@ import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
-
 public abstract class GenericDAO<T, I extends Serializable> {
 
+    protected EntityManager em;
 
-   protected EntityManager em;
+    private Class<T> persistedClass;
 
-   private Class<T> persistedClass;
-        
-   protected GenericDAO()  {
+    protected GenericDAO() {
         EntityManagerFactory emf;
-       try {
-           emf = Conexao.getConexao();
-           em = emf.createEntityManager();
-       } catch (Exception ex) {
-           Logger.getLogger(GenericDAO.class.getName()).log(Level.SEVERE, null, ex);
-           Logger.getLogger("Não foi possível realizar a conexão com a unidade de persistência. Verifique a conexão");
-           
-       }
-        
+        try {
+            emf = Conexao.getConexao();
+            em = emf.createEntityManager();
+        } catch (Exception ex) {
+            Logger.getLogger(GenericDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger("Não foi possível realizar a conexão com a unidade de persistência. Verifique a conexão");
+
+        }
+
     }
-   
-   
 
-   protected GenericDAO(Class<T> persistedClass) {
-       this();
-       this.persistedClass = persistedClass;
-   }
+    protected GenericDAO(Class<T> persistedClass) {
+        this();
+        this.persistedClass = persistedClass;
+    }
 
-   public Boolean incluir( T obj) {
+    public Boolean incluir(T obj) {
         Boolean retorno;
         try {
             em.getTransaction().begin();
@@ -50,17 +45,17 @@ public abstract class GenericDAO<T, I extends Serializable> {
             retorno = true;
         } catch (RuntimeException e) {
             em.getTransaction().rollback();
-           
+
             retorno = false;
             throw e;
         } finally {
             //em.close();
-            
+
         }
         return retorno;
-   }
+    }
 
-   public Boolean alterar( T obj) {
+    public Boolean alterar(T obj) {
         Boolean retorno;
         try {
             em.getTransaction().begin();
@@ -75,10 +70,10 @@ public abstract class GenericDAO<T, I extends Serializable> {
             // em.close();
         }
         return retorno;
-   }
+    }
 
-   public Boolean excluir(T obj) {
-       Boolean retorno;
+    public Boolean excluir(T obj) {
+        Boolean retorno;
         try {
             em.getTransaction().begin();
             em.remove(obj);
@@ -91,21 +86,26 @@ public abstract class GenericDAO<T, I extends Serializable> {
             //em.close();
         }
         return retorno;
-   }
+    }
 
-   public List<T> listar() {
-      return em.createNamedQuery(persistedClass.getSimpleName()+".findAll").getResultList();
-   }
-   
-   public List<T> listar(String filtro) {
-      return em.createNamedQuery(persistedClass.getSimpleName()+".findFilter").setParameter("filtro", "%" + filtro.toLowerCase() + "%").getResultList();
-   }
+    public List<T> listar() {
+        return em.createNamedQuery(persistedClass.getSimpleName() + ".findAll").getResultList();
+    }
 
-   public T buscarPorChavePrimaria(I chaveprimaria) {
-       return em.find(persistedClass, chaveprimaria);
-   }
-   
-   
-   
-   
+    public List<T> listar(String filtro) {
+        return em.createNamedQuery(persistedClass.getSimpleName() + ".findFilter").setParameter("filtro", "%" + filtro.toLowerCase() + "%").getResultList();
+    }
+
+    public List<T> listarTipoMarca(String filtro) throws Exception {
+        return em.createNamedQuery(persistedClass.getSimpleName() + ".findTipoM").setParameter("filtro", "%" + filtro + "%").getResultList();
+    }
+
+    public List<T> listarTipoCategoria(String filtro) throws Exception {
+        return em.createNamedQuery(persistedClass.getSimpleName() + ".findTipoC").setParameter("filtro", "%" + filtro + "%").getResultList();
+    }
+
+    public T buscarPorChavePrimaria(I chaveprimaria) {
+        return em.find(persistedClass, chaveprimaria);
+    }
+
 }

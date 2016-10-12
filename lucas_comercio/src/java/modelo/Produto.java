@@ -30,7 +30,9 @@ import javax.persistence.Table;
 @Table(name = "produto")
 @NamedQueries({
     @NamedQuery(name = "Produto.findAll", query = "SELECT p FROM Produto p"),
-    @NamedQuery(name = "Produto.findFilter", query = "SELECT p FROM Produto p WHERE Lower(p.titulo) like :filtro")})
+    @NamedQuery(name = "Produto.findTipoC", query = "SELECT p FROM Produto p WHERE CAST(p.codcategoria VARCHAR(50)) like :filtro "),
+    @NamedQuery(name = "Produto.findTipoM", query = "SELECT p FROM Produto p WHERE CAST(p.codmarca VARCHAR(50)) like :filtro "),
+    @NamedQuery(name = "Produto.findFilter", query = "SELECT p FROM Produto p WHERE Lower(p.titulo) like :filtro or  Lower(p.codcategoria.nome) like :filtro or Lower(p.codmarca.nome) LIKE :filtro")})
 public class Produto implements Serializable {
 
     private static final long serialVersionUID = 1L;
