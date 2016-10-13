@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import modelo.Produto;
 
 public abstract class GenericDAO<T, I extends Serializable> {
 
@@ -87,7 +88,7 @@ public abstract class GenericDAO<T, I extends Serializable> {
         }
         return retorno;
     }
-
+ 
     public List<T> listar() {
         return em.createNamedQuery(persistedClass.getSimpleName() + ".findAll").getResultList();
     }
@@ -97,11 +98,11 @@ public abstract class GenericDAO<T, I extends Serializable> {
     }
 
     public List<T> listarTipoMarca(String filtro) throws Exception {
-        return em.createNamedQuery(persistedClass.getSimpleName() + ".findTipoM").setParameter("filtro", "%" + filtro + "%").getResultList();
+        return em.createNamedQuery(persistedClass.getSimpleName()  + ".findTipoM").setParameter("filtroM", "%" + filtro + "%").getResultList();
     }
 
     public List<T> listarTipoCategoria(String filtro) throws Exception {
-        return em.createNamedQuery(persistedClass.getSimpleName() + ".findTipoC").setParameter("filtro", "%" + filtro + "%").getResultList();
+        return em.createNamedQuery(persistedClass.getSimpleName()  + ".findTipoC").setParameter("filtroC", "%" + filtro + "%").getResultList();
     }
 
     public T buscarPorChavePrimaria(I chaveprimaria) {

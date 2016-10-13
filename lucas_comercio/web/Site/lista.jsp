@@ -10,9 +10,9 @@
     if (request.getParameter("txtFiltro") != null) {
         lista = dao.listar(request.getParameter("txtFiltro"));
     } else if (request.getParameter("filtroM") != null){
-        lista = dao.listarTipoMarca("filtroM");
-    } else if (request.getParameter("filtroM") != null){
-        lista = dao.listarTipoCategoria("filtroC");
+        lista = dao.listarTipoMarca(request.getParameter("filtroM"));
+    } else if (request.getParameter("filtroC") != null){
+        lista = dao.listarTipoCategoria(request.getParameter("filtroC"));
     } else {
         lista = dao.listar();
     }

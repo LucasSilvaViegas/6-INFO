@@ -4,9 +4,9 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Lucas/Documents/GitHub/NetBeansProjects/lucas_comercio/src/java/modelo/Produto.java</file>
-            <file>file:/C:/Users/Lucas/Documents/GitHub/NetBeansProjects/lucas_comercio/web/Site/index.jsp</file>
+            <file>file:/C:/Users/Lucas/Documents/GitHub/NetBeansProjects/lucas_comercio/src/java/dao/GenericDAO.java</file>
+            <file>file:/C:/Users/Lucas/Documents/GitHub/NetBeansProjects/lucas_comercio/web/Site/lista.jsp</file>
             <file>file:/C:/Users/Lucas/Documents/GitHub/NetBeansProjects/lucas_comercio/web/Site/cabecalho.jsp</file>
-            <file>file:/C:/Users/Lucas/Documents/GitHub/NetBeansProjects/lucas_comercio/web/Site/categoria.jsp</file>
         </group>
     </open-files>
 </project-private>
