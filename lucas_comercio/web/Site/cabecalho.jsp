@@ -48,12 +48,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <div class="container">
                 <div class="header-top">
                     <div class="logo">
-                        <a href="index.jsp">N-AIR</a>
+                        <a href="index.jsp"><img src="../fotos/a.jpg"></a>
                     </div>
-                    <form method="post">
-                        <!--  Monta o filtro  -->
-                        <input type="text" name="txtFiltro" placeholder="PESQUISAR" />
-                    </form>
+
                     <div class="login-bars">
                         <a class="btn btn-default log-bar" href="../Admin" role="button">Sign up</a>
                         <a class="btn btn-default log-bar" href="../Admin" role="button">Login</a>
@@ -64,9 +61,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                         <span class="simpleCart_total"></span>(<span id="simpleCart_quantity" class="simpleCart_quantity"></span>)</div></h3>
                             </a>
                             <p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
-                            <div class="clearfix"> </div>
+                            <div class="clearfix"> </div> <br/>
+                            <form method="post">
+                                <!--  Monta o filtro  -->
+                                <input type="text" name="txtFiltro" placeholder="PESQUISAR" />
+                            </form>
                         </div>	
                     </div>
+
                     <div class="clearfix"></div>
                 </div>
                 <!---menu-----bar--->
@@ -88,23 +90,24 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                     <li class="dropdown">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Shop<b class="caret"></b></a>
                                         <ul class="dropdown-menu">
-                                            <li><a href="lista.jsp">Shoes</a></li>
-                                            <li><a href="lista.jsp">Tees</a></li>
-                                            <li><a href="lista.jsp">Tops</a></li>
+                                            <li><a href="index.jsp">Shoes</a></li>
+                                            <li><a href="index.jsp">Tees</a></li>
+                                            <li><a href="index.jsp">Tops</a></li>
                                             <li class="divider"></li>
-                                            <li><a href="lista.jsp">Tracks</a></li>
+                                            <li><a href="index.jsp">Tracks</a></li>
                                             <li class="divider"></li>
-                                            <li><a href="lista.jsp">Gear</a></li>
+                                            <li><a href="index.jsp">Gear</a></li>
                                         </ul>
                                     </li>
                                     <li class="dropdown">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Produtos<b class="caret"></b></a>
                                         <ul class="dropdown-menu ">
-                                            
-                                                    <ul class="multi-column-dropdown">
-                                                        <li><a href="lista.jsp">Clique aqui kkkj</a></li>
-                                                    </ul>
-                                               
+
+                                            <ul class="multi-column-dropdown">
+                                                <li><a href="index.jsp">Em destaque</a></li>
+                                                <li><a href="index.jsp?filtroD=<%=true%>">Todos os produtos</a>
+                                            </ul>
+
                                         </ul>
                                     </li>
                                     <li class="dropdown">
@@ -113,7 +116,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                             <%
                                                 for (Categoria cat : cLista) {
                                             %>
-                                            <li><a href="lista.jsp?filtroC=<%=cat.getCodigo()%>"><%=cat.getNome()%></a></li>
+                                            <li><a href="index.jsp?filtroC=<%=cat.getCodigo()%>"><%=cat.getNome()%></a></li>
                                                 <% }%>                                           
                                         </ul>
                                     </li>
@@ -123,10 +126,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                             <%
                                                 for (Marca mar : cMarca) {
                                             %>
-                                            <li><a href="lista.jsp?filtroM=<%=mar.getCodigo()%>"><%=mar.getNome()%></a></li>
+                                            <li><a href="index.jsp?filtroM=<%=mar.getCodigo()%>"><%=mar.getNome()%></a></li>
                                                 <% }%>                                           
                                         </ul>
                                     </li>
+                                    <div class="header-end">
+                                        <div class="container">
+                                            <br/><br/><br/>
+                                            <div class="pull-center styl-hdn">
+                                                <h3>Bem vindo ao GAME STOP, a sua cabana dos jogos!</h3>
+                                            </div>
+                                            <br/><br/>
+                                        </div>
+                                    </div>
                                 </ul>
                             </div>
                         </nav>

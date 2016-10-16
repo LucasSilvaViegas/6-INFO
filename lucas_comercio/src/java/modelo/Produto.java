@@ -32,6 +32,7 @@ import javax.persistence.Table;
     @NamedQuery(name = "Produto.findAll", query = "SELECT p FROM Produto p"),
     @NamedQuery(name = "Produto.findTipoC", query = "SELECT p FROM Produto p WHERE CAST(p.codcategoria.codigo VARCHAR(50)) like :filtroC"),
     @NamedQuery(name = "Produto.findTipoM", query = "SELECT p FROM Produto p WHERE CAST(p.codmarca.codigo VARCHAR(50)) like :filtroM"),
+    @NamedQuery(name = "Produto.findTipoD", query = "SELECT p FROM Produto p WHERE p.destaque = true"),
     @NamedQuery(name = "Produto.findFilter", query = "SELECT p FROM Produto p WHERE Lower(p.titulo) like :filtro"
             + " or  Lower(p.codcategoria.nome) like :filtro or Lower(p.codmarca.nome) LIKE :filtro")})
 public class Produto implements Serializable {

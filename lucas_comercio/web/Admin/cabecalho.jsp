@@ -44,10 +44,11 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="../home">
-                        Área Administrativa
+                        <img src="../../fotos/a2.jpg" alt="" height="30" width="230"> 
                     </a>
+
                 </div>
-                <!-- Top Menu Items -->
+                <!-- Top Menu Items 
                 <ul class="nav navbar-right top-nav">
 
                     <li class="dropdown">
@@ -80,12 +81,12 @@
                         </li>
 
                         <li><a href="../cliente">Cliente</a></li>
-                        
+
                         <li><a href="../marca">Marca</a></li>
-                        
+
                         <li><a href="../status">Status</a></li>
                         <li><a href="../usuario">Usuario</a></li>
-
+                        <li><a class="navbar-brand" href="../../Site">VOLTAR PARA A LOJA</a></li>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->

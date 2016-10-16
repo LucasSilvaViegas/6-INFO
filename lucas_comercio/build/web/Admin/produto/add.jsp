@@ -49,6 +49,7 @@
                 response.sendRedirect("index.jsp");
                 return;
             } else {
+
                 if (!upload.getFiles().get(1).isEmpty()) {
                     obj.setImagem2(upload.getFiles().get(1));
                 }

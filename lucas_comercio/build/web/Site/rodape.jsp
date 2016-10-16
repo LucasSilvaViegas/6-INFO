@@ -1,73 +1,83 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <br/><br/>
+<br/><br/>
+
 <div class="sub-news">
     <div class="container">
         <form>
-            <h3>NewsLetter</h3>
-            <input type="text" class="sub-email" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {
-                            this.value = 'Email';
-                        }">
-            <a class="btn btn-default subs-btn" href="#" role="button">SUBSCRIBE</a>
+            <h3>Pesquise por produtos!</h3>
+            <input type="text" class="sub-email" name="txtFiltro" placeholder="Pesquisar">
+
+            <a class="btn btn-default subs-btn" href="#" role="button">PESQUISAR</a>
         </form>
     </div>
-</div>
-        
-<div class="footer-grid">
-    
-    <div class="container">
-        <h3>Seção Encheção de Linguiça</h3>  <br/><br/><br/>
-        <div class="col-md-2 re-ft-grd">
-            <h3>Categories</h3>
-            <ul class="categories">
-                <li><a href="#">Men</a></li>
-                <li><a href="#">Women</a></li>
-                <li><a href="#">Kids</a></li>
-                <li><a href="#">Formal</a></li>
-                <li><a href="#">Casuals</a></li>
-                <li><a href="#">Sports</a></li>
-            </ul>
-        </div>
-        <div class="col-md-2 re-ft-grd">
-            <h3>Short links</h3>
-            <ul class="shot-links">
-                <li><a href="#">Contact us</a></li>
-                <li><a href="#">Support</a></li>
-                <li><a href="#">Delivery</a></li>
-                <li><a href="#">Return Policy</a></li>
-                <li><a href="#">Terms & conditions</a></li>
-                <li><a href="contact.html">Sitemap</a></li>
-            </ul>
-        </div>
-        <div class="col-md-6 re-ft-grd">
-            <h3>Social</h3>
-            <ul class="social">
-                <li><a href="#" class="fb">facebook</a></li>
-                <li><a href="#" class="twt">twitter</a></li>
-                <li><a href="#" class="gpls">g+ plus</a></li>
-                <div class="clearfix"></div>
-            </ul>
-        </div>
-        <div class="col-md-2 re-ft-grd">
-            <div class="bt-logo">
-                <div class="logo">
-                    <a href="index.html" class="ft-log">N-AIR</a>
+    <div class="header">
+        <div class="container">
+            <div class="header-botom">
+                <div class="content white">
+                    <nav class="navbar navbar-default nav-menu" role="navigation">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <div class="clearfix"></div>
+                        <!--/.navbar-header-->
+                        <div class="collapse navbar-collapse collapse-pdng" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav nav-font">
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Shop<b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="lista.jsp">Shoes</a></li>
+                                        <li><a href="lista.jsp">Tees</a></li>
+                                        <li><a href="lista.jsp">Tops</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="lista.jsp">Tracks</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="lista.jsp">Gear</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Produtos<b class="caret"></b></a>
+                                    <ul class="dropdown-menu ">
+
+                                        <ul class="multi-column-dropdown">
+                                            <li><a href="lista.jsp">Clique aqui kkkj</a></li>
+                                        </ul>
+
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Categoria<b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <%
+                                            for (Categoria cat : cLista) {
+                                        %>
+                                        <li><a href="lista.jsp?filtroC=<%=cat.getCodigo()%>"><%=cat.getNome()%></a></li>
+                                            <% }%>                                           
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Marca<b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <%
+                                            for (Marca mar : cMarca) {
+                                        %>
+                                        <li><a href="lista.jsp?filtroM=<%=mar.getCodigo()%>"><%=mar.getNome()%></a></li>
+                                            <% }%>                                           
+                                    </ul>
+                                </li>
+                            </ul>
+                            <br/><br/>
+                            Copyright @LucasEnterprisesKKKJ 2016
+                        </div>
+                    </nav>
                 </div>
             </div>
         </div>
-        <div class="clearfix"></div>
-    </div>
-    <div class="copy-rt">
-        <div class="container">
-            <p>&copy;   2015 N-AIR All Rights Reserved. Design by <a href="http://www.w3layouts.com">w3layouts</a></p>
-        </div>
     </div>
 </div>
+
 </body>
 </html>
