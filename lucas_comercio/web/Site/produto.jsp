@@ -12,6 +12,51 @@
     Integer quant = obj.getQuant();
 %>
 
+<div>
+     <script>
+            // Can also be used with $(document).ready()
+            $(window).load(function() {
+              $('.flexslider').flexslider({
+                animation: "slide",
+                controlNav: "thumbnails"
+              });
+            });
+            </script>
+		<script type="application/x-javascript"> addEventListener("load", function() {setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+		
+		<!--fonts-->
+		<link href='//fonts.googleapis.com/css?family=Fredoka+One' rel='stylesheet' type='text/css'>
+		
+		<!--fonts-->
+		<!--bootstrap-->
+			 <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+		<!--coustom css-->
+			<link href="css/style.css" rel="stylesheet" type="text/css"/>
+        <!--shop-kart-js-->
+        <script src="js/simpleCart.min.js"></script>
+		<!--default-js-->
+			<script src="js/jquery-2.1.4.min.js"></script>
+		<!--bootstrap-js-->
+			<script src="js/bootstrap.min.js"></script>
+<!-- FlexSlider -->
+            <script src="js/imagezoom.js"></script>
+              <script defer src="js/jquery.flexslider.js"></script>
+            <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
+
+            <script>
+            // Can also be used with $(document).ready()
+            $(window).load(function() {
+              $('.flexslider').flexslider({
+                animation: "slide",
+                controlNav: "thumbnails"
+              });
+            });
+            </script>
+        <!-- //FlexSlider-->
+<script src="js/imagezoom.js"></script>
+
+
+</div>
 
 <div class="showcase-grid">
     <div class="container">
@@ -19,13 +64,13 @@
             <div class="flexslider">
                 <ul class="slides">
                     <li data-thumb="../fotos/<%=obj.getImagem1()%>">
-                        <div class="thumb-image"> <img src="../fotos/<%=obj.getImagem1()%>" data-imagezoom="true" class="img-responsive"> </div>
+                        <div> <img src="../fotos/<%=obj.getImagem1()%>" data-imagezoom="true" width="20" height="10"> </div>
                     </li>
                     <li data-thumb="../fotos/<%=obj.getImagem2()%>">
-                        <div class="thumb-image"> <img src="../fotos/<%=obj.getImagem2()%>" data-imagezoom="true" class="img-responsive"> </div>
+                        <div> <img src="../fotos/<%=obj.getImagem2()%>" data-imagezoom="true" width="20" height="10"> </div>
                     </li>
                     <li data-thumb="../fotos/<%=obj.getImagem3()%>">
-                        <div class="thumb-image"> <img src="../fotos/<%=obj.getImagem3()%>" data-imagezoom="true" class="img-responsive"> </div>
+                        <div> <img src="../fotos/<%=obj.getImagem3()%>" data-imagezoom="true" width="20" height="10"> </div>
                     </li>
                 </ul>
                 <div class="clearfix"></div>
@@ -52,36 +97,20 @@
             <hr class="featurette-divider">
             <div class="shocase-rt-bot">
                 <div class="float-qty-chart">
-                    <ul>
-                        <li class="qty">
-                            <h3>Size Chart</h3>
-                            <input type="number"  min="1" max="5"/>
+                    <form action="carrinho.jsp" method="post">
+                    <input type="hidden" name="txtCodigo" value="<%=obj.getCodigo()%>"/>
+                    
+                            <h3>QTY: </h3>
+                            <input type="number" name="txtQuantidade" min="1"/>
                             <br />
 
-                        </li>
-                        <li class="qty">
-                            <h4>QTY</h4>
-                            <select class="form-control qnty-chrt">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                            </select>
-                        </li>
-                    </ul>
+                    
+                        <button type="submit" class="btn item_add" >Add To Cart</button>
+                </form>
                     <div class="clearfix"></div>
                 </div>
-                <ul>
-                    <li class="ad-2-crt simpleCart_shelfItem">
-                        <a class="btn item_add" href="#" role="button">Add To Cart</a>
-                        <a class="btn" href="#" role="button">Buy Now</a>
-                    </li>
-                </ul>
             </div>
-
+        </div>
             <div class="showcase-last">
                 <h3>product details</h3>
                 <ul>
@@ -95,7 +124,7 @@
         </div>
         <div class="clearfix"></div>
     </div>
-</div>
+
 
 <div class="specifications">
     <div class="container">

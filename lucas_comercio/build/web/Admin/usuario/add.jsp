@@ -70,10 +70,10 @@
 
                     <div class="form-group">
                         <label>Login</label>
-                        <input class="form-control" type="text" name="txtNome"required />
+                        <input class="form-control" type="text" name="txtNome" required />
                         
                         <label>Senha</label>
-                        <input class="form-control" type="password" name="txtP"required />
+                        <input class="form-control" type="password" name="txtP" required />
                         
                         <label>Administrador?</label>
                         <input class="form-control" type="checkbox" name="admin" />

@@ -33,7 +33,9 @@
             obj.setImagem1(upload.getFiles().get(0));
             obj.setQuant(Integer.parseInt(upload.getForm().get("txtQuant").toString()));
 
-            obj.setPreco(upload.getForm().get("txtPreco").toString());
+            BigDecimal preco = new BigDecimal(upload.getForm().get("txtPreco").toString());
+            
+            obj.setPreco(preco);
             Categoria categoria = new Categoria();
             categoria.setCodigo(Integer.parseInt(upload.getForm().get("txtCat").toString()));
             obj.setCodcategoria(categoria);
@@ -120,7 +122,7 @@
                     </div>
                     <div class="form-group">
                         <label>Preço</label>
-                        <input class="form-control" type="number" name="txtPreco" required />
+                        <input class="form-control" type=number name="txtPreco" required />
                     </div>
 
                     <div class="form-group">

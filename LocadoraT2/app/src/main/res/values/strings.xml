@@ -1,0 +1,67 @@
+<resources>
+    <string name="app_name">LocadoraT2</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+<!-- Título da app e das telas -->
+<string name="titulo_fragmentcarros">Lista de Filmes</string>
+<string name="title_fragment_detalhecarro">Detalhes do Filme</string>
+<string name="title_fragment_edicaocarro">Edição do Filme</string>
+<string name="title_fragment_novocarro">Novo Filme</string>
+
+<!-- NavigationView -->
+<!-- Operações do tratador de eventos da Drawer, o Toogle -->
+
+<string name="nav_listfimes">Lista de Filmes</string>
+<string name="nav_sobre">Sobre</string>
+<string name="nav_configuracoes">Configurações</string>
+<!-- Rodapé da NavigationView -->
+<string name="direitos_autorais">IFSul Bagé - todos os direitos reservados.</string>
+
+<!-- Tabs Carros -->
+<string name="tabs_todos">Todos</string>
+<string name="tabs_terror">Terror</string>
+<string name="tabs_acao">Ação</string>
+<string name="tabs_comedia">Comédia</string>
+
+<!-- Tipo de Carros, como é persistido no BD -->
+<string name="genero_todos">Todos</string>
+<string name="genero_terror">Terror</string>
+<string name="genero_acao">Ação</string>
+<string name="genero_comedia">Comédia</string>
+
+<!-- Menu, em menu_fragmentcarros.xml-->
+<string name="action_pesquisar">Pesquisar</string>
+<string name="hint_pesquisar">Nome do filme</string>
+<string name="action_novo">Novo</string>
+
+<!-- Menu em menu_fragment_edicaocarro.xml-->
+<string name="action_salvar">Salvar</string>
+<string name="action_excluir">Excluir</string>
+
+<!-- Menu em menu_fragment_detalhecarro.xml -->
+<string name="action_editar">Editar</string>
+
+<!-- Textos para os layouts dos Fragmentos Novo, Detalhe e Edicao -->
+<string name="rating_textview">Classificação:</string>
+<string name="nome_textview">Nome:</string>
+<string name="genero_textview">Gênero:</string>
+<string name="Foto_textview">Foto:</string>
+<string name="urlfoto_textview">URL Foto:</string>
+<string name="urlvideo_hint">Clique para obter a URL</string>
+
+<!-- Mensagens validações -->
+<!-- CarroNovoFragment.java -->
+<string name="val_dadosinputs">Você deve inserir pelo menos o nome do carro.</string>
+
+<!-- Mensagens alerts -->
+<string name="alert_title_wait">Aguarde</string>
+<string name="alert_message_processando">Processando ...</string>
+<string name="alertdialog_buttom_ok">OK</string>
+<string name="alert_title_resultadodaoperacao">Resultado da Operação</string>
+<string name="alert_message_realizadacomsucesso">Realizada com sucesso.</string>
+<string name="alert_message_erroaorealizaroperacao">Erro ao realizar a operação. Por favor, avise o desenvolvedor.</string>
+</resources>

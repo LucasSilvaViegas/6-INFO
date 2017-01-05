@@ -52,15 +52,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     </div>
 
                     <div class="login-bars">
-                        <a class="btn btn-default log-bar" href="../Admin" role="button">Sign up</a>
-                        <a class="btn btn-default log-bar" href="../Admin" role="button">Login</a>
+                        <a class="btn btn-default log-bar" href="newaccount.jsp" role="button">Sign up</a>
+                        <a class="btn btn-default log-bar" href="login.jsp" role="button">Login</a>
                         <div class="cart box_1">
-                            <a href="checkout.html">
-                                <h3>
-                                    <div class="total">
-                                        <span class="simpleCart_total"></span>(<span id="simpleCart_quantity" class="simpleCart_quantity"></span>)</div></h3>
+                            <a href="carrinho.jsp">
+                                <h3>Carrinho de Compras</h3>
                             </a>
-                            <p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
                             <div class="clearfix"> </div> <br/>
                             <form method="post">
                                 <!--  Monta o filtro  -->
@@ -134,7 +131,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                         <div class="container">
                                             <br/><br/><br/>
                                             <div class="pull-center styl-hdn">
-                                                <h3>Bem vindo ao GAME STOP, a sua cabana dos jogos!</h3>
+
+                                                <h3><%if (session.getAttribute("usuario") != null) {%>
+                                                    Olá, <span><%=session.getAttribute("usuario")%></span>. 
+                                                    <%
+                                                        }
+                                                    %>
+                                                    Bem vindo ao GAME STOP, a sua cabana dos jogos!</h3>
                                             </div>
                                             <br/><br/>
                                         </div>
@@ -146,3 +149,4 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 </div>
             </div>
         </div>
+

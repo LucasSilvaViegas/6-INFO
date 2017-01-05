@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/cardview_fragmentdetalhe1"
+                android:layout_margin="6dp"
+                android:clickable="false"
+                card_view:cardBackgroundColor="@color/white"
+                card_view:cardElevation="6dp"
+                card_view:cardCornerRadius="2dp">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:text="TextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView_card_adapter_filmes"
+                        android:layout_marginLeft="3dp"
+                        android:textColorLink="@color/colorPrimary" />
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ProgressBar
+                            style="?android:attr/progressBarStyleSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/progressBar"
+                            android:layout_gravity="center_vertical|center_horizontal" />
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:srcCompat="@drawable/car_background"
+                            android:id="@+id/imageView2"
+                            android:layout_gravity="center_vertical|center_horizontal" />
+
+                    </FrameLayout>
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/cardview_fragmentdetalhe2"
+                android:layout_margin="6dp"
+                android:clickable="false"
+                card_view:cardBackgroundColor="@color/white"
+                card_view:cardElevation="6dp"
+                card_view:cardCornerRadius="2dp">
+
+                <RadioGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center">
+
+                    <RadioButton
+                        android:text="@string/genero_acao"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/radioButtonAcao"
+                        android:layout_weight="1" />
+
+                    <RadioButton
+                        android:text="@string/genero_comedia"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/radioButtonComedia"
+                        android:layout_weight="1" />
+
+                    <RadioButton
+                        android:text="@string/genero_terror"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/radioButtonTerror"
+                        android:layout_weight="1" />
+                </RadioGroup>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/cardview_fragmentdetalhe3"
+                android:layout_margin="6dp"
+                android:clickable="false"
+                card_view:cardBackgroundColor="@color/white"
+                card_view:cardElevation="6dp"
+                card_view:cardCornerRadius="2dp">
+
+                <TextView
+                    android:text="Resolver esse TextView no Strings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView3" />
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView2" />
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>

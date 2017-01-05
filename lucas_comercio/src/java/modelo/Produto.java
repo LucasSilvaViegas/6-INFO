@@ -6,6 +6,7 @@
 package modelo;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.List;
 import javax.persistence.Basic;
@@ -54,7 +55,7 @@ public class Produto implements Serializable {
     private int quant;
     @Basic(optional = false)
     @Column(name = "preco")
-    private String preco;
+    private BigDecimal preco;
     @Basic(optional = false)
     @Column(name = "destaque")
     private boolean destaque;
@@ -80,7 +81,7 @@ public class Produto implements Serializable {
         this.codigo = codigo;
     }
 
-    public Produto(Integer codigo, String titulo, String descricao, int quant, String preco, boolean destaque) {
+    public Produto(Integer codigo, String titulo, String descricao, int quant, BigDecimal preco, boolean destaque) {
         this.codigo = codigo;
         this.titulo = titulo;
         this.descricao = descricao;
@@ -121,11 +122,11 @@ public class Produto implements Serializable {
         this.quant = quant;
     }
 
-    public String getPreco() {
+    public BigDecimal getPreco() {
         return preco;
     }
 
-    public void setPreco(String preco) {
+    public void setPreco(BigDecimal preco) {
         this.preco = preco;
     }
 
