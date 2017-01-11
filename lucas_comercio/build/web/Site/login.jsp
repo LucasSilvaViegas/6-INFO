@@ -7,7 +7,7 @@
         List<Cliente> cliente = dao.listar();
         for (Cliente item : cliente) {
             if (request.getParameter("txtEmail").equals(item.getEmail()) && Criptografia.convertPasswordToMD5(request.getParameter("txtSenha")).equals(item.getSenha())) {
-                session.setAttribute("usuario", request.getParameter("txtLogin"));
+                session.setAttribute("usuario", item);
             response.sendRedirect("index.jsp");
             }
         }
@@ -49,7 +49,6 @@
                                         <span>Senha<label>*</label></span>
                                         <input type="password" name="txtSenha"> 
                                     </div>
-                                    <a class="forgot" href="#">Esqueceu sua senha?</a>
                                     <input type="submit" value="ENTRAR" >
                                 </form>
                             </div>	

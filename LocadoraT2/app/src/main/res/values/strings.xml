@@ -15,7 +15,7 @@
 <!-- NavigationView -->
 <!-- Operações do tratador de eventos da Drawer, o Toogle -->
 
-<string name="nav_listfimes">Lista de Filmes</string>
+<string name="nav_listfilmes">Lista de Filmes</string>
 <string name="nav_sobre">Sobre</string>
 <string name="nav_configuracoes">Configurações</string>
 <!-- Rodapé da NavigationView -->

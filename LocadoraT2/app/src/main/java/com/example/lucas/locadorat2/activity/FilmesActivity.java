@@ -3,6 +3,7 @@ package com.example.lucas.locadorat2.activity;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,6 +16,9 @@ import com.example.lucas.locadorat2.R;
 
 public class FilmesActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private ViewPager viewPager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +44,13 @@ public class FilmesActivity extends BaseActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        viewPager = findViewById(R.id.)
     }
 
     @Override

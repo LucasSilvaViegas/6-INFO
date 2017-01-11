@@ -1,3 +1,4 @@
+<%@page import="modelo.Cliente"%>
 <!--A Design by W3layouts
 Author: W3layout
 Author URL: http://w3layouts.com
@@ -43,7 +44,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <script src="js/bootstrap.min.js"></script>
         <!--script-->
     </head>
-    <body>
+    <body background="../fotos/white-abstract-background_1.jpg">
         <div class="header">
             <div class="container">
                 <div class="header-top">
@@ -51,102 +52,115 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <a href="index.jsp"><img src="../fotos/a.jpg"></a>
                     </div>
 
+                    <%if (session.getAttribute("usuario") == null) {%>
                     <div class="login-bars">
                         <a class="btn btn-default log-bar" href="newaccount.jsp" role="button">Sign up</a>
                         <a class="btn btn-default log-bar" href="login.jsp" role="button">Login</a>
-                        <div class="cart box_1">
-                            <a href="carrinho.jsp">
-                                <h3>Carrinho de Compras</h3>
-                            </a>
-                            <div class="clearfix"> </div> <br/>
-                            <form method="post">
-                                <!--  Monta o filtro  -->
-                                <input type="text" name="txtFiltro" placeholder="PESQUISAR" />
-                            </form>
-                        </div>	
+
+                        <%
+                        } else {
+                        %>
+
+                        <div class="login-bars">
+                            <a class="btn btn-default log-bar" href="logoff.jsp" role="button">DESLOGAR</a>
+
+
+
+                            <div class="cart box_1">
+                                <a href="carrinho.jsp">
+                                    <h3>Carrinho de Compras</h3>
+                                </a> <%
+                                    }
+                                %>
+                                <div class="clearfix"> </div> <br/>
+                                <form method="post">
+                                    <!--  Monta o filtro  -->
+                                    <input type="text" name="txtFiltro" placeholder="PESQUISAR" />
+                                </form>
+                            </div>	
+                        </div>
+
+                        <div class="clearfix"></div>
                     </div>
-
-                    <div class="clearfix"></div>
-                </div>
-                <!---menu-----bar--->
-                <div class="header-botom">
-                    <div class="content white">
-                        <nav class="navbar navbar-default nav-menu" role="navigation">
-                            <div class="navbar-header">
-                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                                    <span class="sr-only">Toggle navigation</span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                </button>
-                            </div>
-                            <div class="clearfix"></div>
-                            <!--/.navbar-header-->
-                            <div class="collapse navbar-collapse collapse-pdng" id="bs-example-navbar-collapse-1">
-                                <ul class="nav navbar-nav nav-font">
-                                    <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Shop<b class="caret"></b></a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="index.jsp">Shoes</a></li>
-                                            <li><a href="index.jsp">Tees</a></li>
-                                            <li><a href="index.jsp">Tops</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="index.jsp">Tracks</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="index.jsp">Gear</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Produtos<b class="caret"></b></a>
-                                        <ul class="dropdown-menu ">
-
-                                            <ul class="multi-column-dropdown">
-                                                <li><a href="index.jsp">Em destaque</a></li>
-                                                <li><a href="index.jsp?filtroD=<%=true%>">Todos os produtos</a>
+                    <!---menu-----bar--->
+                    <div class="header-botom">
+                        <div class="content white">
+                            <nav class="navbar navbar-default nav-menu" role="navigation">
+                                <div class="navbar-header">
+                                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </button>
+                                </div>
+                                <div class="clearfix"></div>
+                                <!--/.navbar-header-->
+                                <div class="collapse navbar-collapse collapse-pdng" id="bs-example-navbar-collapse-1">
+                                    <ul class="nav navbar-nav nav-font">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Shop<b class="caret"></b></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="index.jsp">Shoes</a></li>
+                                                <li><a href="index.jsp">Tees</a></li>
+                                                <li><a href="index.jsp">Tops</a></li>
+                                                <li class="divider"></li>
+                                                <li><a href="index.jsp">Tracks</a></li>
+                                                <li class="divider"></li>
+                                                <li><a href="index.jsp">Gear</a></li>
                                             </ul>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Produtos<b class="caret"></b></a>
+                                            <ul class="dropdown-menu ">
 
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Categoria<b class="caret"></b></a>
-                                        <ul class="dropdown-menu">
-                                            <%
-                                                for (Categoria cat : cLista) {
-                                            %>
-                                            <li><a href="index.jsp?filtroC=<%=cat.getCodigo()%>"><%=cat.getNome()%></a></li>
-                                                <% }%>                                           
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Marca<b class="caret"></b></a>
-                                        <ul class="dropdown-menu">
-                                            <%
-                                                for (Marca mar : cMarca) {
-                                            %>
-                                            <li><a href="index.jsp?filtroM=<%=mar.getCodigo()%>"><%=mar.getNome()%></a></li>
-                                                <% }%>                                           
-                                        </ul>
-                                    </li>
-                                    <div class="header-end">
-                                        <div class="container">
-                                            <br/><br/><br/>
-                                            <div class="pull-center styl-hdn">
+                                                <ul class="multi-column-dropdown">
+                                                    <li><a href="index.jsp">Em destaque</a></li>
+                                                    <li><a href="index.jsp?filtroD=<%=true%>">Todos os produtos</a>
+                                                </ul>
 
-                                                <h3><%if (session.getAttribute("usuario") != null) {%>
-                                                    Olá, <span><%=session.getAttribute("usuario")%></span>. 
-                                                    <%
-                                                        }
-                                                    %>
-                                                    Bem vindo ao GAME STOP, a sua cabana dos jogos!</h3>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Categoria<b class="caret"></b></a>
+                                            <ul class="dropdown-menu">
+                                                <%
+                                                    for (Categoria cat : cLista) {
+                                                %>
+                                                <li><a href="index.jsp?filtroC=<%=cat.getCodigo()%>"><%=cat.getNome()%></a></li>
+                                                    <% }%>                                           
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Marca<b class="caret"></b></a>
+                                            <ul class="dropdown-menu">
+                                                <%
+                                                    for (Marca mar : cMarca) {
+                                                %>
+                                                <li><a href="index.jsp?filtroM=<%=mar.getCodigo()%>"><%=mar.getNome()%></a></li>
+                                                    <% }%>                                           
+                                            </ul>
+                                        </li>
+                                        <div class="header-end">
+                                            <div class="container">
+                                                <br/><br/><br/>
+                                                <div class="pull-center styl-hdn">
+
+                                                    <h3><%if (session.getAttribute("usuario") != null) {%>
+                                                        Olá, <span><%=((Cliente) session.getAttribute("usuario")).getNome()%></span>. 
+                                                        <%
+                                                            }
+                                                        %>
+                                                        Bem vindo ao GAME STOP, a sua cabana dos jogos!</h3>
+                                                </div>
+                                                <br/><br/>
                                             </div>
-                                            <br/><br/>
                                         </div>
-                                    </div>
-                                </ul>
-                            </div>
-                        </nav>
+                                    </ul>
+                                </div>
+                            </nav>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 

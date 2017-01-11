@@ -5,7 +5,7 @@
         <item android:title="Configurações">
             <item
                 android:id="@+id/nav_fragment_list_filmes"
-                android:icon="@drawable/ic_drawer_filme"
+                android:icon="@drawable/ic_drawer_carro"
                 android:title="@string/nav_listfilmes" />
             <item
                 android:id="@+id/nav_fragment_sobre"
