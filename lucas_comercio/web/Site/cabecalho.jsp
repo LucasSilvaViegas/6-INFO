@@ -150,7 +150,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                                         Olá, <span><%=((Cliente) session.getAttribute("usuario")).getNome()%></span>. 
                                                         <%
                                                             }
-                                                        %>
+                                                        %><br/>
                                                         Bem vindo ao GAME STOP, a sua cabana dos jogos!</h3>
                                                 </div>
                                                 <br/><br/>

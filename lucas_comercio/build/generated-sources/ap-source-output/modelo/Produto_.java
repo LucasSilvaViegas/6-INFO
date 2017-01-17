@@ -1,5 +1,6 @@
 package modelo;
 
+import java.math.BigDecimal;
 import javax.annotation.Generated;
 import javax.persistence.metamodel.ListAttribute;
 import javax.persistence.metamodel.SingularAttribute;
@@ -8,11 +9,11 @@ import modelo.Categoria;
 import modelo.Itemvenda;
 import modelo.Marca;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2016-10-15T22:54:43")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2017-01-17T11:12:31")
 @StaticMetamodel(Produto.class)
 public class Produto_ { 
 
-    public static volatile SingularAttribute<Produto, String> preco;
+    public static volatile SingularAttribute<Produto, BigDecimal> preco;
     public static volatile SingularAttribute<Produto, Integer> codigo;
     public static volatile SingularAttribute<Produto, String> imagem3;
     public static volatile SingularAttribute<Produto, String> imagem2;

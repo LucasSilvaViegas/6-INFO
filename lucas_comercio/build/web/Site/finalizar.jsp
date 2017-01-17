@@ -1,3 +1,12 @@
+<%@page import="dao.VendaDAO"%>
+<%@page import="java.sql.Date"%>
+<%@page import="java.time.LocalDate"%>
+<%@page import="java.math.BigDecimal"%>
+<%@page import="dao.ItemvendaDAO"%>
+<%@page import="modelo.ItemvendaPK"%>
+<%@page import="modelo.Status"%>
+<%@page import="modelo.Venda"%>
+<%@page import="modelo.Itemvenda"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="modelo.Produto"%>
 <%@page import="dao.ProdutoDAO"%>
@@ -6,41 +15,48 @@
 <%@page import="modelo.Itemcarrinho"%>
 <%@include file="cabecalho.jsp"%>
 
-<%   Cliente c;
+<%    Cliente c;
     if (session.getAttribute("usuario") == null) {
         response.sendRedirect("login.jsp");
     } else {
 
         c = ((Cliente) session.getAttribute("usuario"));
-        Carrinho carrinho;
-        if (session.getAttribute("carrinho") != null) {
-            carrinho = (Carrinho) session.getAttribute("carrinho");
+        Carrinho carrinho = null;
+
+        if (session.getAttribute("carrinho") == null) {
+            response.sendRedirect("index.jsp");
         } else {
-            carrinho = new Carrinho();
+            carrinho = (Carrinho) session.getAttribute("carrinho");
+
         }
-        if (request.getMethod().equals("POST")) {
 
-            Integer codigo = Integer.parseInt(request.getParameter("txtCodigo"));
-            Integer qtd = Integer.parseInt(request.getParameter("txtQuantidade"));
+        if (request.getParameter("final")!= null && request.getParameter("final").equals("true")) {
 
-            Itemcarrinho item = new Itemcarrinho();
-            item.setQuantidade(qtd);
-            ProdutoDAO pdao = new ProdutoDAO();
-            Produto produto = pdao.buscarPorChavePrimaria(codigo);
-            item.setProduto(produto);
+            Venda venda = new Venda();
+            VendaDAO vendadao = new VendaDAO();
 
-            //VER SE A LISTA JA EXISTE
-            if (carrinho.getItens() == null) {
-                List<Itemcarrinho> itens = new ArrayList<Itemcarrinho>();
-                itens.add(item);
-                carrinho.setItens(itens);
-                carrinho.setTotal(qtd * produto.getPreco().doubleValue());
-            } else {
-                carrinho.getItens().add(item);
-                Double total = (carrinho.getTotal() + (qtd * produto.getPreco().doubleValue()));
-                carrinho.setTotal(total);
+            //Set venda total
+            venda.setCodcliente(c.getCodigo());
+            venda.setDatavenda(Date.valueOf(LocalDate.now()));
+            venda.setTotal(carrinho.getTotal());
+            venda.setCodstatus(1);
+            vendadao.incluir(venda);
+            //Set venda de cada produto
+            ItemvendaDAO itemvendadao = new ItemvendaDAO();
+
+            for (Itemcarrinho item : carrinho.getItens()) {
+
+                Itemvenda L = new Itemvenda();
+                L.setItemvendaPK(new ItemvendaPK(venda.getCodigo(), item.getProduto().getCodigo()));
+
+                L.setProduto(item.getProduto());
+                L.setQuant(item.getQuantidade());
+                L.setPreco(item.getProduto().getPreco().doubleValue());
+                L.setVenda(venda);
+
+                itemvendadao.incluir(L);
             }
-            session.setAttribute("carrinho", carrinho);
+
         }
 
 
@@ -50,23 +66,17 @@
 <!-- check-out -->
 <div class="check">
     <div class="container">	 
-
         <div class="col-md-9 cart-items">
-
             <h1>FINALIZAR COMPRA</h1>
-
-
-            <%                if (carrinho.getItens() != null) {
-                    for (Itemcarrinho item : carrinho.getItens()) {
-
-            %>
-
-
-
             <span>A ser enviado para <%=c.getNome()%>. <br/>
                 ENDEREÇO: <%=c.getEndereco()%>, <%=c.getBairro()%>, <%=c.getCidade()%>, <%=c.getEstado()%>. <br/>
                 CEP <%=c.getCep()%>.<br/>
             </span>
+            <%
+                if (carrinho.getItens() != null) {
+                    for (Itemcarrinho item : carrinho.getItens()) {
+                        Double kk = (item.getProduto().getPreco().doubleValue() * item.getQuantidade());
+            %>
             <br/>
             <br/>
             <div class="cart-header">
@@ -79,37 +89,25 @@
                             <li><p>Nome : <%=item.getProduto().getTitulo()%> </p></li>
                             <li><p>Qty : <%=item.getQuantidade()%></p></li>
                             <li><p>Price each : $<%=item.getProduto().getPreco()%></p></li>
-                            <li></li>
+                            <li><p>Price total : $<%=kk%></p></li>
                         </ul>
                         <div class="delivery">
-
                             <span><%=item.getProduto().getDescricao()%></span>
                             <div class="clearfix"></div>
                         </div>	
                     </div>
                     <div class="clearfix"></div>
-
                 </div>
-            </div>	
-            <%                    }
-                }
-            %>
+            </div><%}
+                }%>
         </div>
         <div class="delivery">
-
         </div>
-
         <div class="col-md-3 cart-total">
             <h1 class="continue">Price total : $<%=carrinho.getTotal()%></h1>
-            <input type="submit" value="Place Order" class="order">
+            <a class="order" href="finalizar.jsp?final=true">Finalizar a compra</a>
         </div>
         <div class="clearfix"> </div>
     </div>
-</div>
-
-<%
-    }
-%>
-
-
+</div><%}%>
 <%@include file="rodape.jsp"%>
