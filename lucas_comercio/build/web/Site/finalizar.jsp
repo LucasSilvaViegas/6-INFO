@@ -41,6 +41,7 @@
             venda.setTotal(carrinho.getTotal());
             venda.setCodstatus(1);
             vendadao.incluir(venda);
+            
             //Set venda de cada produto
             ItemvendaDAO itemvendadao = new ItemvendaDAO();
 

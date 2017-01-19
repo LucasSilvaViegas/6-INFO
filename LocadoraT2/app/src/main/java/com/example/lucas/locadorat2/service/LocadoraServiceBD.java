@@ -1,5 +1,5 @@
 
-package com.example.lucas.locadorat2.model;
+package com.example.lucas.locadorat2.service;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -7,7 +7,10 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.AsyncTask;
 import android.util.Log;
+
+import com.example.lucas.locadorat2.model.Locadora;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,34 +18,40 @@ import java.util.List;
 /**
  * Created by aluno on 31/08/16.
  */
-public class LocadoraBD extends SQLiteOpenHelper {
+public class LocadoraServiceBD extends SQLiteOpenHelper {
 
     private static final String TAG = "locadoras";
-    private static final String NAME  = "locadora.sqlite";
+    private static final String NAME = "locadora.sqlite";
     private static final int VERSION = 1;
-    private static LocadoraBD locadoraBD = null;
+    private static LocadoraServiceBD locadoraServiceBD = null;
 
-    private LocadoraBD(Context context) {
+    private LocadoraServiceBD(Context context) {
         super(context, NAME, null, VERSION);
         //getWritableDatabase();
     }
 
-    public static LocadoraBD getInstance(Context context){
-        if(locadoraBD == null){
-            locadoraBD = new LocadoraBD(context);
-            return locadoraBD;
+    public static LocadoraServiceBD getInstance(Context context) {
+        if (locadoraServiceBD == null) {
+            locadoraServiceBD = new LocadoraServiceBD(context);
+            return locadoraServiceBD;
         }
-        return locadoraBD;
+        return locadoraServiceBD;
     }
-
 
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String sql = "create table if not exists locadora ( _id integer primary key autoincrement, nome text, genero text, rating text, imagem blob );";
-        Log.d(TAG, "Criando a tabela Locadora. Aguarde...");
+        String sql = "create table if not exists Filme (" +
+                " _id integer primary key autoincrement, " +
+                "nome text," +
+                " genero text, " +
+                "rating text, " +
+                "imagem string );";
+        Log.d(TAG, "Criando a tabela Locadora. Aguarde ...");
         sqLiteDatabase.execSQL(sql);
-        Log.d(TAG, "Tabela criada com sucesso!");
+        Log.d(TAG, "Tabela Locadora criada com sucesso.");
+        new Task().execute(); //popula a base de dados
+        Log.d(TAG, "Tabela Locadora foi populada com sucesso.");
     }
 
     @Override
@@ -62,48 +71,47 @@ public class LocadoraBD extends SQLiteOpenHelper {
 }
     }*/
 
-    public long save(Locadora locadora){
+    public long save(Locadora locadora) {
 
         SQLiteDatabase db = getWritableDatabase();
 
         try {
 
-        ContentValues values = new ContentValues();
-        values.put("nome", locadora.nome);
-        values.put("genero", locadora.genero);
-        values.put("rating", locadora.rating);
-        values.put("imagem", locadora.imagem);
+            ContentValues values = new ContentValues();
+            values.put("nome", locadora.nome);
+            values.put("genero", locadora.genero);
+            values.put("rating", locadora.rating);
+            values.put("imagem", locadora.imagem);
 
-        if(locadora._id == null){
+            if (locadora._id == null) {
                 //insere no banco de dados
                 return db.insert("locadora", null, values);
-            }else{
+            } else {
                 //altera no banco de dados
                 values.put("_id", locadora._id);
                 return db.update("locadora", values, "_id=" + locadora._id, null);
             }
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             db.close(); //não esquecer de liberar o recurso
-}
-        return 0;
         }
+        return 0;
+    }
 
 
     //deleta um locadora
-    public long delete(Locadora locadora){
+    public long delete(Locadora locadora) {
         SQLiteDatabase db = getWritableDatabase(); //abre a conexão com o banco
-        try{
+        try {
             return db.delete("locadora", "_id=?", new String[]{String.valueOf(locadora._id)});
-        }
-        finally {
+        } finally {
             db.close(); //não esquecer de liberar o recurso
         }
     }
 
     //retorna a lista de locadoras
-    public List<Locadora> getAll(){
+    public List<Locadora> getAll() {
         SQLiteDatabase db = getReadableDatabase();
         try {
             //retorna uma List para os registros contidos no banco de dados
@@ -115,8 +123,7 @@ public class LocadoraBD extends SQLiteOpenHelper {
     }
 
 
-
-    public List<Locadora> getByname(String nome){
+    public List<Locadora> getByname(String nome) {
         SQLiteDatabase db = getReadableDatabase();
         try {
             //retorna uma List para os registros contidos no banco de dados
@@ -148,7 +155,46 @@ public class LocadoraBD extends SQLiteOpenHelper {
         }
 
         return locadoras;
+
     }
 
-}
+    private class Task extends AsyncTask<Void, Void, Boolean> { //<Params, Progress, Result>
 
+        @Override
+        protected Boolean doInBackground(Void... voids) {
+            return popularTabelaCarro();
+        }
+
+        private boolean popularTabelaCarro() {
+
+            SQLiteDatabase sqLiteDatabase = getWritableDatabase();
+
+            try {
+                //registro 1
+                ContentValues values = new ContentValues();
+                values.put("nome", "Tucker 1948");
+                values.put("genero", "Comédia");
+                values.put("rating", "14");
+                sqLiteDatabase.insert("Locadora", null, values);
+
+                //registro 2
+                values = new ContentValues();
+                values.put("nome", "Chevrolet 2017");
+                values.put("genero", "Ação");
+                values.put("rating", "18");
+                sqLiteDatabase.insert("Locadora", null, values);
+
+
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return false;
+            } finally {
+                sqLiteDatabase.close();
+            }
+
+            return true;
+
+        }
+    }
+}

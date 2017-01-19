@@ -1,8 +1,9 @@
 package com.example.lucas.locadorat2.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -13,9 +14,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.example.lucas.locadorat2.R;
+import com.example.lucas.locadorat2.adapter.TabsAdapter;
 
 public class FilmesActivity extends BaseActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, TabLayout.OnTabSelectedListener
+
+{
 
     private ViewPager viewPager;
 
@@ -23,7 +27,8 @@ public class FilmesActivity extends BaseActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_filmes);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -31,8 +36,10 @@ public class FilmesActivity extends BaseActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG.setAction("Action", null).show();
+                Intent intent = new Intent(FilmesActivity.this, FilmeActivity.class);
+                intent.putExtra("qualFragmentAbrir", "FilmeNovoFragment");
+                startActivity(intent);
             }
         });
 
@@ -50,7 +57,15 @@ public class FilmesActivity extends BaseActivity
     protected void onResume() {
         super.onResume();
 
-        viewPager = findViewById(R.id.)
+        viewPager = (ViewPager) findViewById(R.id.tabanim_viewpager);
+        TabsAdapter adapter = new TabsAdapter(this, getSupportFragmentManager());
+        viewPager.setAdapter(adapter);
+        viewPager.setOffscreenPageLimit(4);
+
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabLayout);
+        tabLayout.setupWithViewPager(viewPager);
+        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+        tabLayout.setOnTabSelectedListener((TabLayout.OnTabSelectedListener) this);
     }
 
     @Override
@@ -81,5 +96,19 @@ public class FilmesActivity extends BaseActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onTabSelected(TabLayout.Tab tab) {
+        viewPager.setCurrentItem(tab.getPosition());
+    }
+
+    @Override
+    public void onTabUnselected(TabLayout.Tab tab) {
+    }
+
+    @Override
+    public void onTabReselected(TabLayout.Tab tab) {
+
     }
 }

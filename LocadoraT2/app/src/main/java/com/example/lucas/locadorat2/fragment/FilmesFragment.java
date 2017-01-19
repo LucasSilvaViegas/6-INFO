@@ -1,5 +1,6 @@
 package com.example.lucas.locadorat2.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -11,9 +12,16 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.lucas.locadorat2.R;
+import com.example.lucas.locadorat2.activity.FilmeActivity;
 import com.example.lucas.locadorat2.activity.FilmesActivity;
+import com.example.lucas.locadorat2.adapter.FilmesAdapter;
+import com.example.lucas.locadorat2.model.Locadora;
+import com.example.lucas.locadorat2.service.FilmeServiceTeste;
+
+import java.util.List;
 
 /**
  * Created by Lucas on 04/01/2017.
@@ -23,6 +31,7 @@ public class FilmesFragment extends BaseFragment implements SearchView.OnQueryTe
 
     private RecyclerView recyclerview;
     private LinearLayoutManager linearLayoutManager;
+    private List<Locadora> filmes;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,6 +53,9 @@ public class FilmesFragment extends BaseFragment implements SearchView.OnQueryTe
         recyclerview.setItemAnimator(new DefaultItemAnimator());
         recyclerview.setHasFixedSize(true);
 
+        filmes = FilmeServiceTeste.getLocadoras(getResources().getString(R.string.genero_todos));
+        FilmesAdapter adapter = new FilmesAdapter(getContext(), filmes, onClick());
+        recyclerview.setAdapter(adapter);
 
         return view;
 
@@ -66,5 +78,18 @@ public class FilmesFragment extends BaseFragment implements SearchView.OnQueryTe
     @Override
     public boolean onQueryTextChange(String newText) {
         return false;
+    }
+
+    protected FilmesAdapter.LocadoraOnClickListener onClick() {
+
+        return new FilmesAdapter.LocadoraOnClickListener() {
+            @Override
+            public void onClickLocadora(View view, int idx) {
+                //Toast.makeText(getContext(), "clicou", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getContext(), FilmeActivity.class);
+                intent.putExtra("qualFragmentAbrir", "FilmeDetalheFragment");
+                startActivity(intent);
+            }
+        };
     }
 }

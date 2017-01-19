@@ -13,7 +13,7 @@ public class Locadora implements Serializable{
     public String nome;
     public String genero;
     public String rating;
-    public byte[] imagem;
+    public String imagem;
 
     @Override
     public String toString() {
@@ -22,7 +22,7 @@ public class Locadora implements Serializable{
                 ", nome='" + nome + '\'' +
                 ", genero='" + genero + '\'' +
                 ", rating='" + rating + '\'' +
-                ", imagem=" + imagem + '\'' +
+                ", imagem='" + imagem + '\'' +
                 '}';
     }
 }
