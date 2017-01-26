@@ -30,10 +30,10 @@
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:text="TextView"
+                        android:text="@string/nome_textview"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/textView_card_adapter_filmes"
+                        android:id="@+id/textView_nomedetalhe"
                         android:layout_marginLeft="3dp"
                         android:textColorLink="@color/colorPrimary" />
 
@@ -80,21 +80,21 @@
                         android:text="@string/genero_acao"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/radioButtonAcao"
+                        android:id="@+id/radioButtonAcaoDETALHE"
                         android:layout_weight="1" />
 
                     <RadioButton
                         android:text="@string/genero_comedia"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/radioButtonComedia"
+                        android:id="@+id/radioButtonComediaDETALHE"
                         android:layout_weight="1" />
 
                     <RadioButton
                         android:text="@string/genero_terror"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/radioButtonTerror"
+                        android:id="@+id/radioButtonTerrorDETALHE"
                         android:layout_weight="1" />
                 </RadioGroup>
 
@@ -111,16 +111,11 @@
                 card_view:cardCornerRadius="2dp">
 
                 <TextView
-                    android:text="Resolver esse TextView no Strings"
+                    android:text="@string/rating_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textView3" />
+                    android:id="@+id/textView_ratingDETALHE" />
 
-                <TextView
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/textView2" />
             </android.support.v7.widget.CardView>
 
         </LinearLayout>

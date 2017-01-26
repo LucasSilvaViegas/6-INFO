@@ -100,21 +100,21 @@
                     android:orientation="horizontal">
 
                     <RadioButton
-                        android:id="@+id/radioButtonAcao"
+                        android:id="@+id/radioButtonAcaoNOVO"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="@string/genero_acao" />
 
                     <RadioButton
-                        android:id="@+id/radioButtonComedia"
+                        android:id="@+id/radioButtonComediaNOVO"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="@string/genero_comedia" />
 
                     <RadioButton
-                        android:id="@+id/radioButtonTerror"
+                        android:id="@+id/radioButtonTerrorNOVO"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"

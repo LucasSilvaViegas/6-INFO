@@ -27,7 +27,7 @@ public class LocadoraServiceBD extends SQLiteOpenHelper {
 
     private LocadoraServiceBD(Context context) {
         super(context, NAME, null, VERSION);
-        //getWritableDatabase();
+        getWritableDatabase();
     }
 
     public static LocadoraServiceBD getInstance(Context context) {
@@ -41,17 +41,17 @@ public class LocadoraServiceBD extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String sql = "create table if not exists Filme (" +
+        String sql = "create table if not exists locadora (" +
                 " _id integer primary key autoincrement, " +
                 "nome text," +
                 " genero text, " +
                 "rating text, " +
                 "imagem string );";
-        Log.d(TAG, "Criando a tabela Locadora. Aguarde ...");
+        Log.d(TAG, "Criando a tabela locadora. Aguarde ...");
         sqLiteDatabase.execSQL(sql);
-        Log.d(TAG, "Tabela Locadora criada com sucesso.");
+        Log.d(TAG, "Tabela locadora criada com sucesso.");
         new Task().execute(); //popula a base de dados
-        Log.d(TAG, "Tabela Locadora foi populada com sucesso.");
+        Log.d(TAG, "Tabela locadora foi populada com sucesso.");
     }
 
     @Override
@@ -110,12 +110,11 @@ public class LocadoraServiceBD extends SQLiteOpenHelper {
         }
     }
 
-    //retorna a lista de locadoras
+    //retorna a lista de filmes
     public List<Locadora> getAll() {
         SQLiteDatabase db = getReadableDatabase();
         try {
             //retorna uma List para os registros contidos no banco de dados
-            // select * from carro
             return toList(db.rawQuery("SELECT  * FROM locadora", null));
         } finally {
             db.close();
@@ -123,12 +122,11 @@ public class LocadoraServiceBD extends SQLiteOpenHelper {
     }
 
 
-    public List<Locadora> getByname(String nome) {
+    public List<Locadora> getBygenero(String genero) {
         SQLiteDatabase db = getReadableDatabase();
         try {
             //retorna uma List para os registros contidos no banco de dados
-            // select * from carro
-            return toList(db.rawQuery("SELECT  * FROM locadora where nome LIKE'" + nome + "%'", null));
+            return toList(db.rawQuery("SELECT  * FROM locadora where genero LIKE'" + genero + "%'", null));
         } finally {
             db.close();
         }
@@ -147,7 +145,7 @@ public class LocadoraServiceBD extends SQLiteOpenHelper {
                 locadora.nome = c.getString(c.getColumnIndex("nome"));
                 locadora.genero = c.getString(c.getColumnIndex("genero"));
                 locadora.rating = c.getString(c.getColumnIndex("rating"));
-                locadora.imagem = c.getBlob(c.getColumnIndex("imagem"));
+                locadora.imagem = c.getString(c.getColumnIndex("imagem"));
 
                 locadoras.add(locadora);
 
@@ -175,14 +173,14 @@ public class LocadoraServiceBD extends SQLiteOpenHelper {
                 values.put("nome", "Tucker 1948");
                 values.put("genero", "Comédia");
                 values.put("rating", "14");
-                sqLiteDatabase.insert("Locadora", null, values);
+                sqLiteDatabase.insert("locadora", null, values);
 
                 //registro 2
                 values = new ContentValues();
                 values.put("nome", "Chevrolet 2017");
                 values.put("genero", "Ação");
                 values.put("rating", "18");
-                sqLiteDatabase.insert("Locadora", null, values);
+                sqLiteDatabase.insert("locadora", null, values);
 
 
 

@@ -30,19 +30,19 @@ public class TabsAdapter extends FragmentPagerAdapter {
         switch (position){
             case 0:
                 f = new FilmesFragment(); //controlador para a aba de índice zero
-                args.putString("tipo", context.getString(R.string.genero_todos));
+                args.putString("genero", context.getString(R.string.genero_todos));
                 break;
             case 1:
                 f = new FilmesFragment(); //controlador para a aba de índice um
-                args.putString("tipo", context.getString(R.string.genero_acao));
+                args.putString("genero", context.getString(R.string.genero_acao));
                 break;
             case 2:
                 f = new FilmesFragment(); //controlador para a aba de índice dois
-                args.putString("tipo", context.getString(R.string.genero_comedia));
+                args.putString("genero", context.getString(R.string.genero_comedia));
                 break;
             case 3:
                 f = new FilmesFragment(); //controlador para a aba de índice três
-                args.putString("tipo", context.getString(R.string.genero_terror));
+                args.putString("genero", context.getString(R.string.genero_terror));
                 break;
         }
 

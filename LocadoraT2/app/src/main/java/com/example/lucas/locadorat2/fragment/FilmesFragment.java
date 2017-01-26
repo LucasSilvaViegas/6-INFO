@@ -1,6 +1,7 @@
 package com.example.lucas.locadorat2.fragment;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -20,7 +21,9 @@ import com.example.lucas.locadorat2.activity.FilmesActivity;
 import com.example.lucas.locadorat2.adapter.FilmesAdapter;
 import com.example.lucas.locadorat2.model.Locadora;
 import com.example.lucas.locadorat2.service.FilmeServiceTeste;
+import com.example.lucas.locadorat2.service.LocadoraServiceBD;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,6 +35,8 @@ public class FilmesFragment extends BaseFragment implements SearchView.OnQueryTe
     private RecyclerView recyclerview;
     private LinearLayoutManager linearLayoutManager;
     private List<Locadora> filmes;
+    private LocadoraServiceBD locadoraServiceBD;
+    private String genero;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,6 +44,16 @@ public class FilmesFragment extends BaseFragment implements SearchView.OnQueryTe
 
         setHasOptionsMenu(true);
         ((FilmesActivity) getActivity()).getSupportActionBar().setTitle(R.string.titulo_fragmentcarros);
+
+        locadoraServiceBD = LocadoraServiceBD.getInstance(getContext());
+
+        genero = (String) getArguments().get("genero");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        new Task().execute();
     }
 
     @Nullable
@@ -53,9 +68,8 @@ public class FilmesFragment extends BaseFragment implements SearchView.OnQueryTe
         recyclerview.setItemAnimator(new DefaultItemAnimator());
         recyclerview.setHasFixedSize(true);
 
-        filmes = FilmeServiceTeste.getLocadoras(getResources().getString(R.string.genero_todos));
-        FilmesAdapter adapter = new FilmesAdapter(getContext(), filmes, onClick());
-        recyclerview.setAdapter(adapter);
+        //filmes = FilmeServiceTeste.getLocadoras(getResources().getString(R.string.genero_todos));
+
 
         return view;
 
@@ -77,19 +91,59 @@ public class FilmesFragment extends BaseFragment implements SearchView.OnQueryTe
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        return false;
+        List<Locadora> filmeList = new ArrayList<>();
+
+        for (Locadora filme : filmes) {
+            if (filme.nome.contains(newText)) {
+                filmeList.add(filme);
+            }
+        }
+
+        FilmesAdapter adapter = new FilmesAdapter(getContext(), filmeList, onClick());
+        recyclerview.setAdapter(adapter);
+        return true;
     }
 
     protected FilmesAdapter.LocadoraOnClickListener onClick() {
 
-        return new FilmesAdapter.LocadoraOnClickListener() {
+        return new FilmesAdapter.LocadoraOnClickListener(){
             @Override
             public void onClickLocadora(View view, int idx) {
                 //Toast.makeText(getContext(), "clicou", Toast.LENGTH_SHORT).show();
+                Locadora filme = filmes.get(idx);
                 Intent intent = new Intent(getContext(), FilmeActivity.class);
                 intent.putExtra("qualFragmentAbrir", "FilmeDetalheFragment");
+                intent.putExtra("filme", filme);
                 startActivity(intent);
             }
         };
+    }
+
+    private class Task extends AsyncTask<Void, Void, List<Locadora>> {
+
+        @Override
+        protected List<Locadora> doInBackground(Void... params) {
+            if (FilmesFragment.this.genero.equals(getString(R.string.tabs_terror))) {
+                return locadoraServiceBD.getBygenero(getString(R.string.tabs_terror));
+            } else if (FilmesFragment.this.genero.equals(getString(R.string.tabs_comedia))) {
+                return locadoraServiceBD.getBygenero(getString(R.string.tabs_comedia));
+            } else if (FilmesFragment.this.genero.equals(getString(R.string.tabs_acao))) {
+                return locadoraServiceBD.getBygenero(getString(R.string.tabs_acao));
+            } else if (FilmesFragment.this.genero.equals(getString(R.string.tabs_todos))) {
+                return locadoraServiceBD.getAll();
+            }
+            return null;
+
+        }
+
+        @Override
+        protected void onPostExecute(List<Locadora> locadoras) {
+            super.onPostExecute(locadoras);
+
+            FilmesFragment.this.filmes = locadoras;
+
+            FilmesAdapter adapter = new FilmesAdapter(getContext(), filmes, onClick());
+            recyclerview.setAdapter(adapter);
+        }
     }
 }
