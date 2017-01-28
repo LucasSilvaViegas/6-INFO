@@ -67,12 +67,10 @@
         <div class="panel-body">
 
             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                <%                            for (Venda item : listavenda) {
+                <% 
+                    for (Venda item : listavenda) {
                         for (Cliente cliente : listacliente) {
                             if (item.getCodcliente() == cliente.getCodigo()) {
-
-                                //AQUI O USUARIO PODERIA CLICAR E VER O QUE ESTÁ COMPRANDO
-
                 %>
                 <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="headingOne">
@@ -90,17 +88,13 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-
-
-
-
                                             <tr>
                                                 <td><%=item.getCodigo()%></td>
                                                 <td><%=cliente.getNome()%></td>
                                                 <td><%=item.getDatavenda()%></td>
                                                 <td>ENVIADO</td>
                                                 <td><%=item.getTotal()%></td>
-                                                <td><a href="produtos.jsp?codigo=<%=item.getCodigo()%>">Detalhes</a>
+                                                <td>Detalhes</td>
 
                                             </tr>
 
@@ -114,52 +108,39 @@
                     <div id="collapse<%=item.getCodigo()%>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                         <div class="panel-body">
                             <div class='col-md-8 col-md-offset-2'>
-                                <%
-                                    VendaDAO vdao = new VendaDAO();
-                                    Venda carrinho = vdao.buscarPorChavePrimaria(item.getCodigo());
-
-                                    for (Itemvenda itemv : carrinho.getItemvendaList()) {
-
-                                %>
                                 <br/>
                                 <br/>
                                 <table class='table table-bordered'>
                                     <div class="cart-header">
+
                                         <tr>
-                                            <td>Foto</td>
-                                            <td>Titulo</td>
-                                            <td>Quantidade</td>
-                                            <td>Preço</td>
-                                            <td>Descrição</td>
+                                            <td><h2>Foto</h2></td>
+                                            <td><h2>Titulo</h2></td>
+                                            <td><h2>Quantidade</h2></td>
+                                            <td><h2>Preço</h2></td>
+                                            <td><h2>Descrição</h2></td>
                                         </tr>
+                                        <%
+                                            VendaDAO vdao = new VendaDAO();
+                                            Venda carrinho = vdao.buscarPorChavePrimaria(item.getCodigo());
+
+                                            for (Itemvenda itemv : carrinho.getItemvendaList()) {
+
+                                        %>
                                         <tr>
                                             <td>
                                                 <img src="../fotos/<%=itemv.getProduto().getImagem1()%>" class="img-responsive" alt=""/>
-
                                             </td>
                                             <td><%=itemv.getProduto().getTitulo()%></td>
                                             <td><%=itemv.getQuant()%></td>
                                             <td>$<%=itemv.getProduto().getPreco()%></td>
                                             <td><%=itemv.getProduto().getDescricao()%></td>
                                         </tr>
-                                        <!--<div class="cart-item-info">
-                                            <ul class="qty">
-                                                <li><p>Nome :  </p></li>
-                                                <li><p>Qty : </p></li>
-                                                <li><p>Price each : </p></li>
-                                            </ul>
-                                            <div class="delivery">
-                                                <span></span>
-                                                <div class="clearfix"></div>
-                                            </div>	
-                                        </div>-->
-
                                         <%}
                                         %>
                                 </table>
                             </div>
                         </div>
-
                     </div>
                 </div>
                 <%
@@ -167,40 +148,8 @@
                         }
                     }
                 %>
-                <!-- <div class="panel panel-default">
-                     <div class="panel-heading" role="tab" id="headingTwo">
-                         <h4 class="panel-title">
-                             <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                 Collapsible Group Item #2
-                             </a>
-                         </h4>
-                     </div>
-                     <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                         <div class="panel-body">
-                             Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                         </div>
-                     </div>
-                 </div>
-                 <div class="panel panel-default">
-                     <div class="panel-heading" role="tab" id="headingThree">
-                         <h4 class="panel-title">
-                             <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                 Collapsible Group Item #3
-                             </a>
-                         </h4>
-                     </div>
-                     <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                         <div class="panel-body">
-                             Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                         </div>
-                     </div>
-                 </div>-->
             </div>
-
-
         </div>
-        <!-- /.panel-body -->
     </div>
-    <!-- /.panel -->
 </div>
 <%@include file="../rodape.jsp" %>
