@@ -85,7 +85,10 @@
                         <li><a href="../marca">Marca</a></li>
 
                         <li><a href="../status">Status</a></li>
+                        
                         <li><a href="../usuario">Usuario</a></li>
+                        
+                        <li><a href="../venda/">Vendas</a></li>
                         <li><a class="navbar-brand" href="../../Site">VOLTAR PARA A LOJA</a></li>
                     </ul>
                 </div>

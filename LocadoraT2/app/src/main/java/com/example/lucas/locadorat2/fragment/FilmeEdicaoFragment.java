@@ -142,7 +142,7 @@ public class FilmeEdicaoFragment extends BaseFragment {
                 new Task().execute(SAVE);
                 break;
             case R.id.menuitem_excluir:
-                Toast.makeText(getContext(), "Excluído", Toast.LENGTH_SHORT).show();
+                new Task().execute(DELETE);
                 break;
             case android.R.id.home:
                 getActivity().finish();

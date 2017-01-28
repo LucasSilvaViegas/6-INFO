@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -37,6 +38,7 @@ public class FilmesFragment extends BaseFragment implements SearchView.OnQueryTe
     private List<Locadora> filmes;
     private LocadoraServiceBD locadoraServiceBD;
     private String genero;
+    private SwipeRefreshLayout refresh;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -71,8 +73,25 @@ public class FilmesFragment extends BaseFragment implements SearchView.OnQueryTe
         //filmes = FilmeServiceTeste.getLocadoras(getResources().getString(R.string.genero_todos));
 
 
+        //SWIPE REFRESH LAYOUT
+
+        refresh = (SwipeRefreshLayout) view.findViewById(R.id.F5);
+        refresh.setOnRefreshListener(OnRefreshListener());
+        refresh.setColorSchemeResources(R.color.refresh_progress_1, R.color.refresh_progress_2, R.color.refresh_progress_3);
+
+
         return view;
 
+    }
+
+    private SwipeRefreshLayout.OnRefreshListener OnRefreshListener() {
+        return new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new Task().execute();
+            }
+
+        };
     }
 
     @Override
@@ -144,6 +163,8 @@ public class FilmesFragment extends BaseFragment implements SearchView.OnQueryTe
 
             FilmesAdapter adapter = new FilmesAdapter(getContext(), filmes, onClick());
             recyclerview.setAdapter(adapter);
+
+            refresh.setRefreshing(false);
         }
     }
 }

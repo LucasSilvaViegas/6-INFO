@@ -101,7 +101,7 @@
                     <input type="hidden" name="txtCodigo" value="<%=obj.getCodigo()%>"/>
                     
                             <h3>QTY: </h3>
-                            <input type="number" name="txtQuantidade" min="1"/>
+                            <input type="number" value=1 name="txtQuantidade" min="1"/>
                             <br />
 
                     

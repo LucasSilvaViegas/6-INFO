@@ -2,8 +2,8 @@
 <resources>
     <!-- cores do Tema Material Design -->
     <!-- O Google disponibiliza uma paleta de cores em http://www.google.com.br/design/spec/style/color.html -->
-    <color name="colorPrimary">#3f51b5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimary">#33ba50</color>
+    <color name="colorPrimaryDark">#309f74</color>
     <color name="colorAccent">#FF4081</color>
 
     <!-- Outras cores-->
@@ -18,4 +18,8 @@
 
     <!-- Cor para efeito rippple -->
     <color name="control_highlight">#B3E5FC</color>
+    <color name="refresh_progress_1">#0f0</color>
+    <color name="refresh_progress_2">#00f</color>
+    <color name="refresh_progress_3">#B3E5FC</color>
+
 </resources>
