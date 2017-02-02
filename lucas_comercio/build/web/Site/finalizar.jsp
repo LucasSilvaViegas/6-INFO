@@ -35,8 +35,10 @@
 <%@page import="modelo.Itemcarrinho"%>
 <%@include file="cabecalho.jsp"%>
 
-<%    Cliente c;
-    String mensagemUsuario = null;
+<%  
+    
+    Cliente c;
+    
 
     if (session.getAttribute("usuario") == null) {
         response.sendRedirect("login.jsp");
@@ -128,7 +130,7 @@
             titulo.setNumeroDoDocumento("123456");
             titulo.setNossoNumero("99345678912");
             titulo.setDigitoDoNossoNumero("5");
-            titulo.setValor(BigDecimal.valueOf(0.23));
+            titulo.setValor(BigDecimal.valueOf(venda.getTotal()));
             titulo.setDataDoDocumento(Date.valueOf(LocalDate.now()));
             titulo.setDataDoVencimento(Date.valueOf(LocalDate.now()));
             titulo.setTipoDeDocumento(TipoDeTitulo.DM_DUPLICATA_MERCANTIL);
@@ -165,7 +167,7 @@
             BoletoViewer boletoViewer = new BoletoViewer(boleto);
 
             session.setAttribute("boleto", boletoViewer);
-
+/*
             EnviarEmail enviar = new EnviarEmail();
             enviar.setEmailDestinatario(c.getEmail().toString());
             enviar.setAssunto("Você comprou na GameStop");
@@ -177,17 +179,10 @@
             texto.append("Software: ");
             texto.append("TROLLEI");
             enviar.setMsg(texto.toString());
-            
+
             boolean enviou = enviar.enviarGmail();
-            if (enviou) {
 
-                mensagemUsuario = "Dados enviados com sucesso";
-
-            } else {
-                mensagemUsuario = "Não foi enviar as informações";
-
-            }
-            
+*/
             session.setAttribute("carrinho", null);
 
 

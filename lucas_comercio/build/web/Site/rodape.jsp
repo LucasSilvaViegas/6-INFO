@@ -11,7 +11,7 @@
             <a class="btn btn-default subs-btn" href="#" role="button">PESQUISAR</a>
         </form>
     </div>
-    <a href="../Admin/">Admin</a>
+    
 </div>
  
 </body>

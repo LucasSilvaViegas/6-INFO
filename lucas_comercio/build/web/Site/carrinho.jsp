@@ -107,7 +107,7 @@
             %>
         </div><div class="col-md-3 cart-total">
             <h1 class="continue">Price total : $<%=carrinho.getTotal()%></h1>
-            <a class="order" href="finalizar.jsp">Place Order</a>
+            <a class="order" href="finalizar.jsp">Finalizar Compra</a>
         </div>
         <div class="clearfix"> </div>
     </div>

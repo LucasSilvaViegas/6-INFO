@@ -1,10 +1,5 @@
-<%@page import="util.EnviarEmail"%>
-<%@page import="java.io.OutputStream"%>
-<%@page import="org.jrimum.bopepo.Boleto"%>
-<%@page import="org.jrimum.domkee.financeiro.banco.febraban.Titulo.EnumAceite"%>
-<%@page import="org.jrimum.domkee.financeiro.banco.febraban.TipoDeTitulo"%>
-<%@page import="java.sql.Date"%>
 <%@page import="java.math.BigDecimal"%>
+<%@page import="util.EnviarEmail"%>
 <%@page import="org.jrimum.domkee.financeiro.banco.febraban.Titulo"%>
 <%@page import="org.jrimum.domkee.financeiro.banco.febraban.Agencia"%>
 <%@page import="org.jrimum.domkee.financeiro.banco.febraban.Carteira"%>
@@ -19,39 +14,38 @@
 <%@page import="org.jrimum.domkee.financeiro.banco.febraban.Cedente"%>
 <%@page import="java.io.File"%>
 <%@page import="org.jrimum.bopepo.view.BoletoViewer"%>
-<%@page import="dao.VendaDAO"%>
+<%@page import="java.io.OutputStream"%>
+<%@page import="org.jrimum.bopepo.Boleto"%>
+<%@page import="org.jrimum.domkee.financeiro.banco.febraban.Titulo.EnumAceite"%>
+<%@page import="org.jrimum.domkee.financeiro.banco.febraban.TipoDeTitulo"%>
 <%@page import="java.time.LocalDate"%>
-<%@page import="java.math.BigDecimal"%>
-<%@page import="dao.ItemvendaDAO"%>
-<%@page import="modelo.ItemvendaPK"%>
-<%@page import="modelo.Status"%>
+<%@page import="java.sql.Date"%>
+<%@page import="dao.VendaDAO"%>
 <%@page import="modelo.Venda"%>
+<%@page import="modelo.ItemvendaPK"%>
 <%@page import="modelo.Itemvenda"%>
+<%@page import="dao.ItemvendaDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="modelo.Produto"%>
+<%@page import="modelo.Itemcarrinho"%>
 <%@page import="dao.ProdutoDAO"%>
 <%@page import="modelo.Carrinho"%>
-<%@page import="modelo.Cliente"%>
-<%@page import="modelo.Itemcarrinho"%>
 <%@include file="cabecalho.jsp"%>
 
-<%  
-    
-    Cliente c;
-    
+
+<%    Cliente c;
 
     if (session.getAttribute("usuario") == null) {
         response.sendRedirect("login.jsp");
     } else {
-
         c = ((Cliente) session.getAttribute("usuario"));
+
         Carrinho carrinho = null;
 
         if (session.getAttribute("carrinho") == null) {
             response.sendRedirect("index.jsp");
         } else {
             carrinho = (Carrinho) session.getAttribute("carrinho");
-
         }
 
         if (request.getParameter("final") != null && request.getParameter("final").equals("true")) {
@@ -82,10 +76,11 @@
 
                 itemvendadao.incluir(L);
             }
+
             /*
                  * INFORMANDO DADOS SOBRE O CEDENTE.
              */
-            Cedente cedente = new Cedente("GameStop", "00.000.208/0001-00");
+            Cedente cedente = new Cedente("PROJETO JRimum", "00.000.208/0001-00");
 
             /*
                  * INFORMANDO DADOS SOBRE O SACADO.
@@ -95,7 +90,7 @@
             // Informando o endereço do sacado.
             Endereco enderecoSac = new Endereco();
             enderecoSac.setUF(UnidadeFederativa.RN);
-            enderecoSac.setLocalidade("Bagé");
+            enderecoSac.setLocalidade("Natal");
             enderecoSac.setCep(new CEP("59064-120"));
             enderecoSac.setBairro("Grande Centro");
             enderecoSac.setLogradouro("Rua poeta dos programas");
@@ -130,7 +125,7 @@
             titulo.setNumeroDoDocumento("123456");
             titulo.setNossoNumero("99345678912");
             titulo.setDigitoDoNossoNumero("5");
-            titulo.setValor(BigDecimal.valueOf(venda.getTotal()));
+            titulo.setValor(BigDecimal.valueOf(0.23));
             titulo.setDataDoDocumento(Date.valueOf(LocalDate.now()));
             titulo.setDataDoVencimento(Date.valueOf(LocalDate.now()));
             titulo.setTipoDeDocumento(TipoDeTitulo.DM_DUPLICATA_MERCANTIL);
@@ -167,85 +162,75 @@
             BoletoViewer boletoViewer = new BoletoViewer(boleto);
 
             session.setAttribute("boleto", boletoViewer);
-/*
-            EnviarEmail enviar = new EnviarEmail();
-            enviar.setEmailDestinatario(c.getEmail().toString());
-            enviar.setAssunto("Você comprou na GameStop");
-            //uso StringBuffer para otimizar a concatenação 
-            //de string
-            StringBuffer texto = new StringBuffer();
-            texto.append("<h2 align='center'>GAMESTOP</h2>");
-            texto.append("Informações Enviadas:<br/>");
-            texto.append("Software: ");
-            texto.append("TROLLEI");
-            enviar.setMsg(texto.toString());
 
-            boolean enviou = enviar.enviarGmail();
+            if (request.getMethod().equals("POST")) {
+                EnviarEmail enviar = new EnviarEmail();
+                enviar.setEmailDestinatario("SEU EMAIL");
+                enviar.setAssunto("Contato - AgroSoftware");
+                //uso StringBuffer para otimizar a concatenação 
+                //de string
+                StringBuffer texto = new StringBuffer();
+                texto.append("<h2 align='center'>AgroSoftware</h2>");
+                texto.append("Informações Enviadas:<br/>");
+                texto.append("Software: AAAAA");
 
-*/
+                enviar.setMsg(texto.toString());
+
+                boolean enviou = enviar.enviarHotmail();
+
+            }
+
+            out.print("DEU CERTO!");
+            
             session.setAttribute("carrinho", null);
 
-
-%>
-<div class="header-end">
-    <div class="container">
-        <div class="pull-center styl-hdn">
-            <h2 class="order">Um email foi enviado para a confirmação da compra. <br/>
-                Obrigado por Comprar na GAMESTOP!
-                Pegue aqui o seu <a href="boleto.jsp">Boleto</a>.</h2>
-        </div>
-    </div>
-</div>
-<%            } else {
-%>
-
-
-<!-- check-out -->
-<div class="check">
-    <div class="container">	 
-        <div class="col-md-9 cart-items">
-            <h1>FINALIZAR COMPRA</h1>
-            <span>A ser enviado para <%=c.getNome()%>. <br/>
-                ENDEREÇO: <%=c.getEndereco()%>, <%=c.getBairro()%>, <%=c.getCidade()%>, <%=c.getEstado()%>. <br/>
-                CEP <%=c.getCep()%>.<br/>
-            </span>
-            <%
-                if (carrinho.getItens() != null) {
-                    for (Itemcarrinho item : carrinho.getItens()) {
-                        Double kk = (item.getProduto().getPreco().doubleValue() * item.getQuantidade());
             %>
-            <br/>
-            <br/>
-            <div class="cart-header">
-                <div class="cart-sec simpleCart_shelfItem">
-                    <div class="cart-item cyc">
-                        <img src="../fotos/<%=item.getProduto().getImagem1()%>" class="img-responsive" alt=""/>
-                    </div>
-                    <div class="cart-item-info">
-                        <ul class="qty">
-                            <li><p>Nome : <%=item.getProduto().getTitulo()%> </p></li>
-                            <li><p>Qty : <%=item.getQuantidade()%></p></li>
-                            <li><p>Price each : $<%=item.getProduto().getPreco()%></p></li>
-                            <li><p>Price total : $<%=kk%></p></li>
-                        </ul>
-                        <div class="delivery">
-                            <span><%=item.getProduto().getDescricao()%></span>
-                            <div class="clearfix"></div>
-                        </div>	
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-            </div><%}
-                }%>
-        </div>
-        <div class="delivery">
-        </div>
-        <div class="col-md-3 cart-total">
-            <h1 class="continue">Price total : $<%=carrinho.getTotal()%></h1>
-            <a class="order" href="finalizar.jsp?final=true">Finalizar a compra</a>
-        </div>
-        <div class="clearfix"> </div>
-    </div>
-</div><%}
-    }%>
+            
+            <a href="boleto.jsp">Boleto</a>
+            
+            <%
+            
+        }
+
+%>
+
+
+<h1>FINALIZAR COMPRA</h1>
+
+<!--DADOS DO CLIENTE-->
+<%=c.getNome()%>, <%=c.getEndereco()%>, <%=c.getBairro()%>, <%=c.getCidade()%>, <%=c.getEstado()%>, <%=c.getCep()%>.<br/>
+
+
+<!--LISTAR PRODUTOS-->
+<%
+    if (carrinho.getItens() != null) {
+        for (Itemcarrinho item : carrinho.getItens()) {
+            Double kk = (item.getProduto().getPreco().doubleValue() * item.getQuantidade());
+%>
+
+
+<img src="../fotos/<%=item.getProduto().getImagem1()%>" class="img-responsive" alt=""/>
+
+<p>Nome : <%=item.getProduto().getTitulo()%> </p>
+<p>Qty : <%=item.getQuantidade()%></p>
+<p>Price each : $<%=item.getProduto().getPreco()%></p>
+<p>Price total : $<%=kk%></p>
+<p>Descrição : <%=item.getProduto().getDescricao()%></p>
+
+<h1 class="continue">Price total da compra: $<%=carrinho.getTotal()%></h1>
+<%
+        }
+    }
+%>
+
+
+
+<a class="order" href="finalizarLIVE.jsp?final=true">Finalizar a compra</a>
+
+
+<%
+    }
+%>
+
+
 <%@include file="rodape.jsp"%>
